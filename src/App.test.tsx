@@ -1,9 +1,14 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
+import App from './App'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+// очищаем все после каждого теста, чтобы избежать утечек памяти
+afterEach(cleanup)
+// тестируем отображение компонента, ищём нужный текст
+test('render App', () => {
+    render(<App />)
+    const renderElement = screen.getByText(
+        /Проект для тестирования компонентов React/i
+    )
+    expect(renderElement).toBeInTheDocument()
+})

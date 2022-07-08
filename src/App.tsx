@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FormEvent } from 'react'
+import './App.css'
+import Form from './Components/Form'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const onSubmit = (evt: FormEvent<HTMLFormElement>): void => {
+        const valueEvent: any = evt.target
+        evt.preventDefault()
+        alert(
+            `Форма отправлена! Получены значения: amount=${valueEvent[0].value}, fee=${valueEvent[1].value}`
+        )
+    }
+    return (
+        <div className="app">
+            <h2>Проект для тестирования компонентов React</h2>
+            <Form onSubmit={onSubmit} />
+        </div>
+    )
 }
 
-export default App;
+export default App
